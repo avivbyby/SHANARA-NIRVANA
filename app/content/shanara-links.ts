@@ -13,7 +13,7 @@ export type ConnectionLink = {
   href: string;
   icon: LinkIconName;
 };
-export type AlbumLink = { id: string; label: string; href: string; platform?: string };
+export type AlbumLink = { id: string; label: string; href: string; platform?: string; available?: boolean };
 export type AlbumEvent = { id: string; label: string; albums: AlbumLink[] };
 export const directoryLink = "https://taplink.cc/shanara_legacy";
 export const eventLink: ConnectionLink = {
@@ -45,7 +45,7 @@ export const albumEvents: AlbumEvent[] = [
     { id: "retronara-gallery", label: "האלבום המלא", platform: "Pixieset", href: "https://pixelbel.pixieset.com/shanaralegacy/#" },
   ] },
   { id: "back-to-the-source", label: "Back to the source", albums: [
-    { id: "source-gallery", label: "האלבום המלא", platform: "Pixieset", href: "https://shelchyk.pixieset.com/shanaralegacy/" },
+    { id: "source-gallery", label: "האלבום המלא", platform: "Pixieset", available: false, href: "https://shelchyk.pixieset.com/shanaralegacy/" },
   ] },
   { id: "fire-ceremony", label: "Fire ceremony", albums: [
     { id: "fire-gallery", label: "האלבום המלא", platform: "Pixieset", href: "https://alexoosherov.pixieset.com/shanaralegacy/" },

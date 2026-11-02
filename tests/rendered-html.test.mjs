@@ -86,12 +86,11 @@ test("standalone page modules exist and parse after extraction", async () => {
 });
 
 // Every business destination from Taplink must survive server rendering and future additions.
-test("renders all five albums and the community, Instagram and event destinations", async () => {
+test("renders available albums and the community, Instagram and event destinations", async () => {
   const html = await (await render()).text();
   for (const url of [
     "https://pixelbel.pixieset.com/shanaralegacyfemina/",
     "https://pixelbel.pixieset.com/shanaralegacy/#",
-    "https://shelchyk.pixieset.com/shanaralegacy/",
     "https://alexoosherov.pixieset.com/shanaralegacy/",
     "https://lidorpeerartlead.pixieset.com/shanara/",
     "https://instagram.com/shanara.legacy",
@@ -132,4 +131,11 @@ test("Nirvana uses local fonts, real responsive widths and versioned code", asyn
     assert.match(html, /site-modules\/[^"?]+\.js\?v=[a-f0-9]{12}/);
     assert.match(html, /property="og:image" content="https:\/\//);
   }
+});
+
+test("unavailable album stays listed without a broken outbound link", async () => {
+  const html = await (await render()).text();
+  assert.match(html, /Back to the source/);
+  assert.match(html, /האלבום לא זמין כרגע/);
+  assert.doesNotMatch(html, /href="https:\/\/shelchyk\.pixieset\.com/);
 });

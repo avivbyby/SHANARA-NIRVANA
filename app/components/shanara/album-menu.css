@@ -118,3 +118,8 @@
 .shanaraPage .albumMenuHint{padding-bottom:env(safe-area-inset-bottom,0px)}
 }
 @media(prefers-reduced-motion:reduce){.shanaraPage .albumActionMark{transition:none!important}}
+
+.shanaraPage .albumUnavailableMark{justify-self:center;width:9px;height:9px;border:1px solid #c7b6a3;border-radius:50%;opacity:.6}
+.shanaraPage .eventAlbumUnavailable{border-style:dashed;background:#30241e80;color:#c7b6a3}
+.shanaraPage .eventAlbumUnavailable:hover{background:#30241e80;border-color:#dbc3a94d;box-shadow:none}
+.shanaraPage .eventAlbumUnavailable:hover .eventAlbumStar{rotate:0deg;scale:1}

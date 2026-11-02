@@ -45,7 +45,7 @@ export default function AlbumLinks() {
       <span className="albumSunRays" aria-hidden="true">{Array.from({ length: 24 }, (_, i) => <i key={i} style={{ "--ray-angle": `${i * 15}deg` } as CSSProperties} />)}</span>
       <span className="albumSunCore"><span aria-hidden="true">✦</span><span>אלבומים</span><small>פותחים את המעגל <AlbumActionMark /></small></span>
     </button>
-    <noscript><div className="albumFallback">{albumEvents.map(event => <div key={event.id}><h3>{event.label}</h3>{event.albums.map(album => <a key={album.id} href={album.href} target="_blank" rel="noopener noreferrer">{album.label}</a>)}</div>)}</div></noscript>
+    <noscript><div className="albumFallback">{albumEvents.map(event => <div key={event.id}><h3>{event.label}</h3>{event.albums.map(album => album.available === false ? <p key={album.id}>האלבום לא זמין כרגע</p> : <a key={album.id} href={album.href} target="_blank" rel="noopener noreferrer">{album.label}</a>)}</div>)}</div></noscript>
     <dialog ref={dialog} id="shanara-album-menu" className="albumMenu" style={{ backdropFilter: "blur(22px)", WebkitBackdropFilter: "blur(22px)" }} aria-labelledby="album-menu-title" onCancel={event => { if (selectedId) { event.preventDefault(); back(); } }} onClick={event => { if (event.target === event.currentTarget) close(); }} onClose={() => { setOpen(false); setSelectedId(null); const trigger = origin.current; if (trigger?.closest<HTMLDialogElement>("dialog") && !trigger.closest<HTMLDialogElement>("dialog")?.open) document.querySelector<HTMLButtonElement>(".shMenuToggle")?.focus({ preventScroll: true }); else trigger?.focus({ preventScroll: true }); }}>
       <div className="albumMenuHeader"><div><p className="kicker">{selectedEvent ? "האלבומים של האירוע" : "SHANARA · THROUGH YOUR EYES"}</p><h2 id="album-menu-title" aria-live="polite">{selectedEvent ? <bdi>{selectedEvent.label}</bdi> : "כל אירוע, עולם."}</h2></div><button type="button" className="albumMenuClose" autoFocus onClick={close} aria-label="סגירת תפריט האלבומים">×</button></div>
       {selectedEvent ? <EventAlbumsPanel key={selectedEvent.id} event={selectedEvent} onBack={back} backRef={backButton} /> : <nav className={`albumConstellation${albumEvents.length > 6 ? " albumMany" : ""}`} aria-label="בחירת אירוע">
@@ -53,12 +53,13 @@ export default function AlbumLinks() {
         <div className="albumMenuSun" aria-hidden="true"><span>✦</span><span>מתוך המעגל</span><small>SHANARA LEGACY</small></div>
         {albumEvents.map((event, index) => {
           const angle = (-90 + index * 360 / albumEvents.length) * Math.PI / 180;
+          const availableCount = event.albums.filter(album => album.available !== false).length;
           return <button className="albumMenuLink albumEventTrigger" key={event.id} data-event-id={event.id} type="button" ref={node => { if (node) eventButtons.current.set(event.id, node); else eventButtons.current.delete(event.id); }} onClick={() => setSelectedId(event.id)} aria-label={`האלבומים של ${event.label}`} style={{ "--album-x": `${50 + 35 * Math.cos(angle)}%`, "--album-y": `${50 + 36 * Math.sin(angle)}%`, "--album-delay": `${index * 85 + 120}ms` } as CSSProperties}>
-            <span className="albumMenuNumber" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><span className="albumMenuName" dir="ltr">{event.label}</span><AlbumActionMark className="albumMenuArrow" /><span className="albumEventCount">{event.albums.length === 1 ? "אלבום אחד" : `${event.albums.length} אלבומים`}</span>
+            <span className="albumMenuNumber" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><span className="albumMenuName" dir="ltr">{event.label}</span>{availableCount ? <AlbumActionMark className="albumMenuArrow" /> : <span className="albumMenuArrow albumUnavailableMark" aria-hidden="true" />}<span className="albumEventCount">{availableCount === 0 ? "האלבום לא זמין כרגע" : availableCount === 1 ? "אלבום אחד" : `${availableCount} אלבומים`}</span>
           </button>;
         })}
       </nav>}
-      <p className="albumMenuHint">{selectedEvent ? "כל אלבום נפתח בלשונית חדשה" : "בחרו אירוע וגלו את האלבומים שלו"} <span aria-hidden="true">✦</span> כל הרגעים נשארים איתנו</p>
+      <p className="albumMenuHint">{selectedEvent ? selectedEvent.albums.some(album => album.available !== false) ? "כל אלבום נפתח בלשונית חדשה" : "האלבום לא זמין כרגע" : "בחרו אירוע וגלו את האלבומים שלו"} <span aria-hidden="true">✦</span> כל הרגעים נשארים איתנו</p>
     </dialog>
   </section>;
 }
