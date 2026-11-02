@@ -1,0 +1,12 @@
+[build]
+  command = "pnpm run build:netlify"
+  publish = "dist-netlify"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Three prerendered routes; no SPA catch-all or server function is needed.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

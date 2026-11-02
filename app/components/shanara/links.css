@@ -1,0 +1,57 @@
+/* Link collections share brand tokens; data lives in content/shanara-links.ts. */
+.shanaraPage .albumArchive{display:grid;grid-template-columns:1fr 1.45fr;gap:clamp(40px,7vw,120px);padding-block:clamp(75px,9vw,140px);background:var(--grey);color:var(--ink);position:relative;isolation:isolate}
+.shanaraPage .albumIntro{position:relative;align-self:start}
+.shanaraPage .albumIntro h2 em,.shanaraPage .connectionHeading h2 em{font-style:normal;color:var(--wine)}
+.shanaraPage .albumIntro>p:not(.kicker){max-width:28ch;font-size:16px;line-height:1.85;color:var(--muted);margin-top:28px}
+.shanaraPage .albumStar{display:block;font-size:clamp(70px,11vw,165px);font-weight:300;line-height:1;margin-top:45px;color:#a42c2759;transform-origin:center;width:1em}
+.shanaraPage .albumList{border-top:1px solid #8f6c4b66;align-self:center}
+.shanaraPage .albumLink{position:relative;display:grid;grid-template-columns:24px 1fr auto;gap:20px;align-items:center;padding:30px 0;border-bottom:1px solid #8f6c4b66;min-height:110px;isolation:isolate}
+.shanaraPage .albumLink:before{content:"";position:absolute;inset:0 -15px;background:#f9efe2;z-index:-1;transform:scaleY(0);transform-origin:bottom;transition:transform .55s var(--motion-ease);border-radius:12px}
+.shanaraPage .albumLink:hover:before,.shanaraPage .albumLink:focus-visible:before{transform:scaleY(1)}
+.shanaraPage .albumNumber{font-size:11px;color:var(--muted);align-self:start;padding-top:12px}
+.shanaraPage .albumName{font-size:clamp(23px,2.5vw,40px);font-weight:300;letter-spacing:-.04em;line-height:1.2;text-align:right;transition:translate .55s var(--motion-ease)}
+.shanaraPage .albumAction{display:flex;align-items:center;gap:15px;white-space:nowrap;font-size:11px;color:var(--muted)}
+.shanaraPage .albumAction>span{font-size:25px;transition:transform .45s}
+.shanaraPage .albumLink:hover .albumAction>span{transform:translate(-4px,-4px)}
+.shanaraPage .albumLink:hover .albumName{translate:-5px 0}
+.shanaraPage .connectionSection{position:relative;background:#ead5b9;padding-block:clamp(80px,9vw,145px);isolation:isolate;overflow:hidden}
+.shanaraPage .connectionSection:before{content:"";position:absolute;width:60vw;aspect-ratio:1;top:-30vw;left:-15vw;border:1px solid #a42c2726;border-radius:50%;box-shadow:0 0 0 70px #a42c2705,0 0 0 140px #a42c2704;pointer-events:none;z-index:-1}
+.shanaraPage .connectionHeading{display:grid;grid-template-columns:1fr 2fr;gap:30px;position:relative}
+.shanaraPage .connectionHeading>div>p{color:var(--muted);font-size:16px;max-width:40ch;margin-top:26px;line-height:1.8}
+.shanaraPage .connectionSpark{position:absolute;left:0;top:0;font-size:70px;line-height:1;color:#a42c2760;pointer-events:none}
+.shanaraPage .connectionGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:65px}
+.shanaraPage .connectionCard{display:flex;flex-direction:column;align-items:stretch;min-width:0;padding:clamp(25px,3vw,46px);border:1px solid #9a735746;border-radius:30px 10px;background:#f8eddb88;color:var(--ink);transition:background .4s,border-color .4s,box-shadow .4s}
+.shanaraPage .connectionCard:hover{background:#fff5e6;border-color:#9a735799;box-shadow:0 24px 45px -35px #6b312866}
+.shanaraPage .connectionTop{display:flex;justify-content:space-between;align-items:center;margin-bottom:45px}
+.shanaraPage .connectionIcon{display:grid;place-items:center;width:56px;height:56px;border:1px solid #a42c2744;border-radius:50%;color:var(--wine);transition:transform .6s var(--motion-ease),background .4s}
+.shanaraPage .connectionIcon svg{width:26px;height:26px}
+.shanaraPage .connectionCard:hover .connectionIcon{transform:rotate(-12deg) translateY(-5px);background:#a42c2711}
+.shanaraPage .connectionIndex{font-size:11px;color:var(--muted)}
+.shanaraPage .connectionEyebrow{font-size:12px;color:var(--muted);margin-bottom:12px}
+.shanaraPage .connectionCard h3{font-size:clamp(25px,3vw,45px);text-align:right;overflow-wrap:anywhere}
+.shanaraPage .connectionDescription{font-size:15px;line-height:1.85;margin-top:22px;color:var(--muted);max-width:30ch;flex:1}
+.shanaraPage .connectionAction{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:40px;padding-top:22px;border-top:1px solid #9a735744;font-size:14px}
+.shanaraPage .connectionAction>span{font-size:23px;transition:transform .4s}
+.shanaraPage .connectionCard:hover .connectionAction>span{transform:translate(-4px,-4px)}
+.shanaraPage .connectionFoot{display:flex;justify-content:space-between;gap:25px;margin-top:35px;font-size:13px;color:var(--muted)}
+.shanaraPage .connectionFoot>a{display:inline-flex;gap:15px;align-items:center;min-height:44px}
+@media(max-width:1050px){.shanaraPage .albumArchive{grid-template-columns:1fr 1.5fr;gap:40px}.shanaraPage .albumAction{font-size:0;gap:0}.shanaraPage .albumAction>span{font-size:25px}.shanaraPage .connectionGrid{gap:12px}.shanaraPage .connectionCard{padding:25px}}
+@media(max-width:700px){
+.shanaraPage .albumArchive{grid-template-columns:1fr;gap:40px;padding-block:65px}
+.shanaraPage .albumIntro{padding-inline-end:45px}
+.shanaraPage .albumStar{position:absolute;left:0;top:0;font-size:55px;margin:0}
+.shanaraPage .albumIntro>p:not(.kicker){max-width:35ch;margin-top:22px}
+.shanaraPage .albumLink{min-height:100px;gap:15px;padding-block:25px}
+.shanaraPage .albumName{font-size:clamp(23px,6.4vw,34px)}
+.shanaraPage .connectionHeading{grid-template-columns:1fr;gap:0}
+.shanaraPage .connectionHeading>div{padding-inline-end:25px}
+.shanaraPage .connectionSpark{font-size:45px}
+.shanaraPage .connectionGrid{grid-template-columns:1fr;margin-top:40px;gap:18px}
+.shanaraPage .connectionCard{padding:28px;border-radius:26px 10px}
+.shanaraPage .connectionTop{margin-bottom:25px}
+.shanaraPage .connectionCard h3{font-size:36px}
+.shanaraPage .connectionDescription{max-width:40ch}
+.shanaraPage .connectionAction{margin-top:25px}
+.shanaraPage .connectionFoot{display:block}
+}
+@media(prefers-reduced-motion:reduce){.shanaraPage .albumLink:before,.shanaraPage .albumName,.shanaraPage .connectionIcon,.shanaraPage .connectionAction>span{transition:none!important;transform:none!important;translate:none!important}}
