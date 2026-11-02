@@ -7,7 +7,7 @@ import { navigationLinks as links, siteLinks } from "./content/shanara";
 
 import { requestAlbumMenu } from "./components/shanara/album-menu-events";
 
-const Logo = () => <img src="/shanara-logo-white.png" alt="SHANARA Legacy" width={4500} height={2360} />;
+const Logo = () => <img src="/shanara-logo-white.webp" alt="SHANARA Legacy" width={480} height={252} />;
 
 export default function ShanaraNavigation() {
   const dialog = useRef<HTMLDialogElement>(null);

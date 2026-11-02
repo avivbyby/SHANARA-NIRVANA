@@ -15,6 +15,12 @@ test("Netlify output contains three complete prerendered routes", async () => {
     assert.doesNotMatch(page, /localhost:|<!--shanara-app-->/);
   }
   assert.match(pages[0], /הרגע עבר/);
+  for (const html of pages) {
+    const head = html.match(/<head[^>]*>([\s\S]*?)<\/head>/i)?.[1] ?? "";
+    assert.match(head, /name="description"/);
+    assert.match(head, /property="og:image" content="https:\/\//);
+    assert.doesNotMatch(head, /fonts\.googleapis/);
+  }
   assert.match(pages[0], /af15e43f976a49cc8c1d70c1946a3044/);
   assert.match(pages[0], /m5u7izGsMinckmtB6/);
   await access(path.join(root, "shanara-photos/desert-canopy-artlead.webp"));

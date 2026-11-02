@@ -26,7 +26,7 @@ export function useSmoothScrolling() {
     const stop = () => { cancelAnimationFrame(frame); engine?.destroy(); engine = undefined; };
     const change = () => { if (preference.matches) stop(); else start(); };
     let script = document.querySelector<HTMLScriptElement>('script[data-shanara-scroller]');
-    if (!script) { script = document.createElement("script"); script.src = "/site-modules/shared/vendor-lenis.js"; script.async = true; script.dataset.shanaraScroller = "true"; document.head.append(script); }
+    if (!script) { script = document.createElement("script"); script.src = "/site-modules/shared/vendor-lenis.js?v=07020831fc52"; script.async = true; script.dataset.shanaraScroller = "true"; document.head.append(script); }
     script.addEventListener("load", start); preference.addEventListener("change", change); start();
     return () => { disposed = true; stop(); script?.removeEventListener("load", start); preference.removeEventListener("change", change); };
   }, []);

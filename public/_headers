@@ -1,0 +1,16 @@
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/site-modules/*
+  Cache-Control: public, max-age=31536000, immutable
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+/*.webp
+  Cache-Control: public, max-age=2592000
+/*.png
+  Cache-Control: public, max-age=2592000
+/*.jpg
+  Cache-Control: public, max-age=2592000
+/nirvana-assets/*
+  Cache-Control: public, max-age=2592000
+/shanara-photos/*
+  Cache-Control: public, max-age=2592000

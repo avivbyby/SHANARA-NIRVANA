@@ -22,8 +22,8 @@ test("server-renders the Shanara experience", async () => {
   assert.match(html, /SHANARA Legacy \| מעגל של אהבה/);
   assert.match(html, /לאירוע הבא/);
   assert.match(html, /https:\/\/zygo\.co\.il\/event\/698cbb46740bbd0327f146fb\?tl=OXA2/);
-  assert.match(html, /shanara-logo-white\.png/);
-  assert.match(html, /event-friendship\.jpg/);
+  assert.match(html, /shanara-logo-white\.webp/);
+  assert.match(html, /event-friendship\.webp/);
   assert.match(html, /PXBL3519\.webp/);
   assert.match(html, /role="tablist"/);
   assert.match(html, /role="tabpanel"/);
@@ -35,7 +35,7 @@ test("server-renders the Shanara experience", async () => {
   assert.match(html, /רגעים שאי אפשר/);
   assert.match(html, /href="\/nirvana"/);
   assert.match(html, /פחות רעש/);
-  assert.match(html, /shanara-vision\.jpg/);
+  assert.match(html, /shanara-vision\.webp/);
   assert.match(html, /החזון המלא של SHANARA Legacy/);
   assert.doesNotMatch(html, /כמקשה אחת/);
   assert.doesNotMatch(html, /פתיחת החזון המלא/);
@@ -75,7 +75,7 @@ test("standalone page modules exist and parse after extraction", async () => {
   const { Script } = await import("node:vm");
   for (const pathname of ["/nirvana", "/nirvana/plans"]) {
     const html = await (await render(pathname)).text();
-    const references = [...html.matchAll(/(?:src|href)="(\/site-modules\/[^"?]+)"/g)];
+    const references = [...html.matchAll(/(?:src|href)="(\/site-modules\/[^"?]+)(?:\?v=[a-f0-9]+)?"/g)];
     assert.ok(references.length > 1, `Expected modular resources for ${pathname}`);
     for (const [, asset] of references) {
       const source = await readFile(new URL(`../public${asset}`, import.meta.url), "utf8");
@@ -110,4 +110,26 @@ test("All Stars groups both supplied albums under one event", async () => {
   assert.match(html, /2 אלבומים/);
   assert.ok(html.includes('href="https://lightroom.adobe.com/shares/af15e43f976a49cc8c1d70c1946a3044"'));
   assert.ok(html.includes('href="https://photos.app.goo.gl/m5u7izGsMinckmtB6"'));
+});
+
+test("initial HTML head has metadata and never preloads the lazy manifesto", async () => {
+  const html = await (await render()).text();
+  const head = html.match(/<head\b[^>]*>([\s\S]*?)<\/head>/i)?.[1] ?? "";
+  assert.match(head, /name="description"/);
+  assert.match(head, /property="og:image" content="https:\/\//);
+  assert.doesNotMatch(head, /shanara-vision/);
+  const image = html.match(/<img[^>]*src="\/shanara-vision\.webp"[^>]*>/)?.[0] ?? "";
+  assert.match(image, /loading="lazy"/);
+  assert.match(image, /srcSet=/i);
+});
+
+test("Nirvana uses local fonts, real responsive widths and versioned code", async () => {
+  for (const route of ["/nirvana", "/nirvana/plans"]) {
+    const html = await (await render(route)).text();
+    assert.doesNotMatch(html, /fonts\.googleapis|fonts\.gstatic|1600w/);
+    assert.match(html, /-md\.webp 1080w/);
+    assert.match(html, /\/fonts\/fonts-v1\.css/);
+    assert.match(html, /site-modules\/[^"?]+\.js\?v=[a-f0-9]{12}/);
+    assert.match(html, /property="og:image" content="https:\/\//);
+  }
 });

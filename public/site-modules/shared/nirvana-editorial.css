@@ -55,8 +55,8 @@ html.lenis body {
   --accent:#8f1a14; --accent-strong:#8f1a14;
   --f-body:"Rubik",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
   --f-display:"Rubik",system-ui,sans-serif;
-  --f-latin:"Audiowide","Rubik",sans-serif;
-  --f-label:"Michroma","Rubik",sans-serif;
+  --f-latin:"Rubik",sans-serif;
+  --f-label:"Rubik",sans-serif;
   font-family:var(--f-body);font-weight:400;}
 
 /* Base element styles + keyframes (shared by all sections). */

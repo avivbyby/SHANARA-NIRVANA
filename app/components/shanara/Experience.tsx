@@ -6,7 +6,7 @@ import MomentsGallery from "./MomentsGallery";
 export default function Experience() {
   return (
 <section className="experience" id="experience">
-        <img className="experienceLogo" src="/shanara-logo-white.png" alt="" aria-hidden="true" width={4500} height={2360} />
+        <img className="experienceLogo" src="/shanara-logo-white.webp" alt="" aria-hidden="true" width={480} height={252} />
         <div className="experienceHeader sectionPad">
           <p className="kicker">החוויה</p>
           <AnimatedHeading>עולם שנבנה<br />עד לפרט האחרון.</AnimatedHeading>

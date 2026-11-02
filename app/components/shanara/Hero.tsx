@@ -8,7 +8,7 @@ export default function Hero() {
 
         <div className="heroContent">
           <p className="eyebrow">UNDERGROUND COMMUNITY · ISRAEL</p>
-          <img className="logo" src="/shanara-logo-white.png" alt="SHANARA Legacy" fetchPriority="high" width={4500} height={2360} />
+          <img className="logo" src="/shanara-logo-white.webp" alt="SHANARA Legacy" fetchPriority="high" width={480} height={252} />
 
           <p className="lead">
             הפקה שנולדה כדי להביא אור, אהבה ושמחה — חוויה מושקעת,
