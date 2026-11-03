@@ -5,9 +5,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("../dist-netlify/", import.meta.url));
-const routes = ["index.html", "nirvana/index.html", "nirvana/plans/index.html", "accessibility/index.html"];
+const routes = ["index.html", "nirvana/index.html", "nirvana/plans/index.html", "accessibility/index.html", "privacy/index.html"];
 
-test("Netlify output contains four complete prerendered routes", async () => {
+test("Netlify output contains five complete prerendered routes", async () => {
   const pages = await Promise.all(routes.map(route => readFile(path.join(root, route), "utf8")));
   for (const page of pages) {
     assert.match(page, /<html[^>]+lang="he"/);
@@ -20,6 +20,8 @@ test("Netlify output contains four complete prerendered routes", async () => {
     assert.match(head, /name="description"/);
     assert.match(head, /property="og:image" content="https:\/\//);
     assert.doesNotMatch(head, /fonts\.googleapis/);
+    assert.match(head, /rel="canonical"/);
+    assert.match(head, /type="application\/ld\+json"/);
   }
   assert.match(pages[0], /af15e43f976a49cc8c1d70c1946a3044/);
   assert.match(pages[0], /m5u7izGsMinckmtB6/);
@@ -33,7 +35,7 @@ test("all local HTML resources and route links resolve in the output", async () 
     const html = await readFile(path.join(root, route), "utf8");
     const paths = [...html.matchAll(/(?:src|href)="(\/[^"?#]*)(?:[?#][^"]*)?"/g)].map(match => match[1]);
     for (const localPath of new Set(paths)) {
-      const target = localPath === "/" ? "index.html" : ["/nirvana", "/nirvana/", "/nirvana/plans", "/nirvana/plans/", "/accessibility", "/accessibility/"].includes(localPath) ? `${localPath.replace(/^\/+|\/+$/g, "")}/index.html` : localPath.slice(1);
+      const target = localPath === "/" ? "index.html" : ["/nirvana", "/nirvana/", "/nirvana/plans", "/nirvana/plans/", "/accessibility", "/accessibility/", "/privacy", "/privacy/"].includes(localPath) ? `${localPath.replace(/^\/+|\/+$/g, "")}/index.html` : localPath.slice(1);
       await access(path.join(root, target)).catch(() => assert.fail(`${route}: missing ${localPath}`));
     }
   }

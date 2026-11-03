@@ -1,0 +1,35 @@
+{
+  "origin": "https://shanara-legacy.avivbaryaron1.chatgpt.site",
+  "name": "SHANARA Legacy",
+  "logo": "/shanara-logo-color.webp",
+  "social": [
+    "https://instagram.com/shanara.legacy"
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "name": "SHANARA Legacy | מעגל של אהבה",
+      "description": "הפקה עם לב, חזון וקהילה. הכירו את SHANARA Legacy, גלו רגעים מהאירועים והצטרפו למעגל."
+    },
+    {
+      "path": "/nirvana",
+      "name": "Nirvana by SHANARA | מרחב של נוכחות, ריפוי וחיבור",
+      "description": "מרחב טיפולים וסדנאות שמגיע אליכם: סאונד, נשימה, יוגה ומפגש. לארגונים, להפקות ולריטריטים."
+    },
+    {
+      "path": "/nirvana/plans",
+      "name": "מסלולי Nirvana לחברות ולהפקות",
+      "description": "הפסקות לצוות, ימי גיבוש, ריטריטים ומתחמי Nirvana לאירועים. הכירו את המסלולים ודברו איתנו."
+    },
+    {
+      "path": "/accessibility",
+      "name": "הצהרת נגישות | SHANARA ו־Nirvana",
+      "description": "התאמות הנגישות באתר, כלי הגלישה ודרכי פנייה לצוות WEBaby."
+    },
+    {
+      "path": "/privacy",
+      "name": "מדיניות פרטיות | SHANARA ו־Nirvana",
+      "description": "מידע על פנייה בוואטסאפ, פרטיות הגולשים, שמירת העדפות ודרכי פנייה בנושא מידע אישי."
+    }
+  ]
+}

@@ -51,3 +51,10 @@
 - `useEditorialMotion.ts`: במובייל כניסה עדינה ללא הרכבת תמונות מהצדדים, ותנועה מצומצמת בתוך המסגרת.
 
 אלבום שאינו זמין זמנית: להגדיר `available: false` בפריט בתוך `app/content/shanara-links.ts`. האירוע והודעת הזמינות נשארים גלויים, והכתובת אינה מוצגת כקישור. להסיר את ההגדרה לאחר עדכון לקישור תקין.
+
+## Mobile layout, search and privacy
+
+- Shared phone/tablet composition: `public/site-modules/shared/mobile-layout.css`. Keep long body text and form fields in readable RTL alignment; center visual anchors rather than every element indiscriminately.
+- Public search URLs/schema: `app/content/site-metadata.json`; generation: `scripts/generate-site-metadata.mjs` (invoked by version-assets/build). Update the page list when adding a public route. Netlify's build replaces the configured origin for the deploy domain.
+- Privacy policy: `app/privacy/document.html`; link it before form fields and from the footers. Current owner choice is WhatsApp-only with no lead database and no analytics. Do not add CRM or tracking without updating the actual operation, disclosure and permissions.
+- Home mobile photograph: `hero-forest-mobile-540.webp` and `hero-forest-mobile-900.webp`; retain the desktop/original photograph and the picture media query.

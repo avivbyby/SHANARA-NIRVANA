@@ -1,6 +1,6 @@
 /* Accessible validation and reviewable WhatsApp preparation; never sends automatically. */
 (function () {
-  const form = document.querySelector('#leadForm'); if (!form) return;
+  const form = document.querySelector('#leadForm'); if (!form) return; form.inert = false;
   document.querySelectorAll('[data-pkg]').forEach(a => a.addEventListener('click', () => { const field = form.querySelector('#f-type'); if (field) field.value = a.dataset.pkg; }));
   const summary = document.createElement('div'); summary.className = 'formErrors'; summary.hidden = true; summary.tabIndex = -1; summary.setAttribute('role', 'alert'); form.prepend(summary);
   const fields = [...form.querySelectorAll('input:not([type="hidden"]),select,textarea')];

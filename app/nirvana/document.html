@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/site-modules/shared/nirvana-editorial.css?v=5390b2243d63">
 <link rel="stylesheet" href="/site-modules/shared/accessibility.css?v=889c1b51e4ed">
 <meta name="theme-color" content="#0d0e13">
-<script src="/site-modules/shared/accessibility-tools.js?v=6a8469e138c9"></script></head>
+<script src="/site-modules/shared/accessibility-tools.js?v=6a8469e138c9"></script><link rel="stylesheet" href="/site-modules/shared/mobile-layout.css?v=c7e080ae2f0d"><!-- site-seo:start --><link rel="canonical" href="https://shanara-legacy.avivbaryaron1.chatgpt.site/nirvana"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://shanara-legacy.avivbaryaron1.chatgpt.site/#website","url":"https://shanara-legacy.avivbaryaron1.chatgpt.site/","name":"SHANARA Legacy","inLanguage":"he","publisher":{"@id":"https://shanara-legacy.avivbaryaron1.chatgpt.site/#organization"}},{"@type":"Organization","@id":"https://shanara-legacy.avivbaryaron1.chatgpt.site/#organization","name":"SHANARA Legacy","url":"https://shanara-legacy.avivbaryaron1.chatgpt.site/","logo":"https://shanara-legacy.avivbaryaron1.chatgpt.site/shanara-logo-color.webp","sameAs":["https://instagram.com/shanara.legacy"]},{"@type":"WebPage","@id":"https://shanara-legacy.avivbaryaron1.chatgpt.site/nirvana#page","url":"https://shanara-legacy.avivbaryaron1.chatgpt.site/nirvana","name":"Nirvana by SHANARA | מרחב של נוכחות, ריפוי וחיבור","description":"מרחב טיפולים וסדנאות שמגיע אליכם: סאונד, נשימה, יוגה ומפגש. לארגונים, להפקות ולריטריטים.","inLanguage":"he","isPartOf":{"@id":"https://shanara-legacy.avivbaryaron1.chatgpt.site/#website"}}]}</script><!-- site-seo:end --></head>
 <body class="grain nv2 ea">
 <!-- icon set (core/icons.svg — keep in sync) -->
 <svg class="iconSprite" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
@@ -495,9 +495,9 @@
         <ul><li>שיחת היכרות קצרה</li><li>הצעה מותאמת לקהל ולמקום</li><li>תיאום והפקה מלאה</li></ul>
         <span class="demoNote">ממלאים כאן, ממשיכים לשיחה בוואטסאפ ושולחים כשמוכנים.</span>
       </div>
-      <form class="form" id="leadForm" novalidate><p class="requiredNote">שדות המסומנים ב״חובה״ נדרשים להמשך.</p>
+      <form class="form" id="leadForm" novalidate inert><p class="formPrivacy">הטופס מכין הודעה בלבד ואינו שומר פנייה באתר. המשך לוואטסאפ מעביר את ההודעה לשירות WhatsApp; השליחה לצוות מתבצעת רק שם. <a href="/privacy">למדיניות הפרטיות</a></p><p class="requiredNote">שדות המסומנים ב״חובה״ נדרשים להמשך.</p>
         <label>שם מלא (חובה)<input name="name" required autocomplete="name" placeholder="איך קוראים לך?"></label>
-        <label>חברה / הפקה (חובה)<input name="company" required autocomplete="organization" placeholder="שם החברה או ההפקה"></label>
+        <label>חברה / הפקה<input name="company" autocomplete="organization" placeholder="שם החברה או ההפקה"></label>
         <label>טלפון (חובה)<input name="phone" type="tel" required autocomplete="tel" placeholder="050-0000000" dir="ltr" style="text-align:right"></label>
         <label>אימייל<input name="email" type="email" autocomplete="email" placeholder="name@company.com" dir="ltr" style="text-align:right"></label>
         <label>מספר משתתפים<select name="size"><option value="">בחרו</option><option>עד 20</option><option>20–50</option><option>50–150</option><option>150+</option></select></label>
@@ -509,7 +509,7 @@
           <span class="demoNote">הפרטים ישולבו בהודעה שתוכלו לבדוק ולשלוח בעצמכם בוואטסאפ.</span>
         </div>
         <div class="success" role="status">ההודעה מוכנה. אפשר לעבור לוואטסאפ, לבדוק ולשלוח. <a class="btn" id="prepared-whatsapp" target="_blank" rel="noreferrer">להמשך בוואטסאפ</a></div>
-      </form>
+      </form><noscript><p>להכנת הודעה בטופס דרוש JavaScript. אפשר <a href="https://wa.me/972549405700">לפנות ישירות לוואטסאפ של Nirvana</a>. <a href="/privacy">מדיניות פרטיות</a></p></noscript>
     </div>
   </div>
 </section>
@@ -589,7 +589,7 @@
       <a class="family" href="/" aria-label="חזרה לשנארה"><img src="/nirvana-assets/nirvana-mark-red.webp" alt="" width="160" height="110"><img class="fWord" src="/nirvana-assets/nirvana-wordmark-red.webp" alt="NIRVANA by SHANARA" width="400" height="79"></a>
     </div>
   </div>
-<nav class="accessibilityFooter" aria-label="נגישות"><a href="/accessibility">הצהרת נגישות</a><a href="?static=1">הצגת הדף ללא הנפשות</a></nav>
+<nav class="accessibilityFooter" aria-label="מידע ונגישות"><a href="/accessibility">הצהרת נגישות</a><a href="/privacy">מדיניות פרטיות</a><a href="?static=1">הצגת הדף ללא הנפשות</a></nav>
 </footer>
 
 
@@ -600,11 +600,11 @@
 <script src="/site-modules/shared/vendor-lenis.js?v=07020831fc52"></script>
 <script src="/site-modules/shared/scroll-reveal.js?v=cfa0f0374673"></script>
 <script src="/site-modules/shared/photo-drift.js?v=44c6fa0d1311"></script>
-<script src="/site-modules/shared/gallery.js?v=5d3275f67c63"></script>
+<script src="/site-modules/shared/gallery.js?v=5ccc20a8a1f0"></script>
 <script src="/site-modules/shared/navigation.js?v=e0831f1e0ae9"></script>
 <script src="/site-modules/shared/worlds.js?v=62b0661f0902"></script>
 <script src="/site-modules/shared/journey.js?v=4112a4bc3598"></script>
-<script src="/site-modules/shared/lead-form.js?v=e2abab088eef"></script>
+<script src="/site-modules/shared/lead-form.js?v=8bc216460eb8"></script>
 <script src="/site-modules/shared/booking-bar.js?v=faeffcd24949"></script>
 <script src="/site-modules/shared/editorial-motion.js?v=e1f78332730e"></script>
 </body>

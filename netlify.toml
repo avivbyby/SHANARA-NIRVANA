@@ -5,7 +5,7 @@
 [build.environment]
   NODE_VERSION = "22"
 
-# Three prerendered routes; no SPA catch-all or server function is needed.
+# Five prerendered routes; no SPA catch-all or server function is needed.
 [[headers]]
   for = "/assets/*"
   [headers.values]

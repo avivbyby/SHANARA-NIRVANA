@@ -4,13 +4,13 @@
   if (!items.length) return;
   const list = [...new Map(items.map(el => [el.dataset.full, el])).values()];
   const lb = document.createElement('dialog'); lb.className = 'lb2'; lb.setAttribute('aria-label', 'גלריית התמונות של Nirvana');
-  lb.innerHTML = '<span class="cnt" aria-hidden="true"></span><button type="button" class="x" aria-label="סגירת הגלריה">✕</button><button type="button" class="prev" aria-label="התמונה הקודמת">→</button><button type="button" class="next" aria-label="התמונה הבאה">←</button><figure><img alt=""><figcaption aria-live="polite"></figcaption></figure>';
+  lb.innerHTML = '<span class="cnt" aria-hidden="true"></span><button type="button" class="x" aria-label="סגירת הגלריה">✕</button><button type="button" class="prev" aria-label="התמונה הקודמת">→</button><button type="button" class="next" aria-label="התמונה הבאה">←</button><figure><figcaption aria-live="polite"></figcaption></figure>';
   document.body.appendChild(lb);
-  const img = lb.querySelector('img'), cap = lb.querySelector('figcaption'), cnt = lb.querySelector('.cnt');
+  const img = document.createElement('img'), cap = lb.querySelector('figcaption'), cnt = lb.querySelector('.cnt');
   let index = 0, origin = null, previousOverflow = '';
   const show = number => {
     index = (number + list.length) % list.length; const item = list[index], source = item.querySelector('img');
-    img.src = item.dataset.full; img.alt = source?.alt ?? ''; cap.textContent = `${index + 1} מתוך ${list.length} — ${img.alt}`; cnt.textContent = `${index + 1} / ${list.length}`;
+    if (!img.isConnected) cap.before(img); img.src = item.dataset.full; img.alt = source?.alt ?? ''; cap.textContent = `${index + 1} מתוך ${list.length} — ${img.alt}`; cnt.textContent = `${index + 1} / ${list.length}`;
   };
   const close = () => lb.close();
   const open = item => { origin = item.querySelector(".galleryTrigger"); previousOverflow = document.body.style.overflow; show(list.findIndex(el => el.dataset.full === item.dataset.full)); lb.showModal(); lb.classList.add('open'); document.body.style.overflow = 'hidden'; lb.querySelector('.x').focus(); };

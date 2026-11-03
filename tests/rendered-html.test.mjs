@@ -73,7 +73,7 @@ test("plans page offers company routes before production packages", async () => 
 test("standalone page modules exist and parse after extraction", async () => {
   const { readFile } = await import("node:fs/promises");
   const { Script } = await import("node:vm");
-  for (const pathname of ["/nirvana", "/nirvana/plans", "/accessibility"]) {
+  for (const pathname of ["/nirvana", "/nirvana/plans", "/accessibility", "/privacy"]) {
     const html = await (await render(pathname)).text();
     const references = [...html.matchAll(/(?:src|href)="(\/site-modules\/[^"?]+)(?:\?v=[a-f0-9]+)?"/g)];
     assert.ok(references.length > 1, `Expected modular resources for ${pathname}`);
@@ -142,7 +142,7 @@ test("unavailable album stays listed without a broken outbound link", async () =
 
 
 test("accessibility statement, text manifesto and accessibility resources are served", async () => {
-  for (const route of ["/", "/nirvana", "/nirvana/plans", "/accessibility"]) {
+  for (const route of ["/", "/nirvana", "/nirvana/plans", "/accessibility", "/privacy"]) {
     const html = await (await render(route)).text();
     assert.match(html, /הצהרת נגישות/);
     assert.match(html, /accessibility\.css/);
@@ -160,4 +160,46 @@ test("accessibility statement, text manifesto and accessibility resources are se
   const nirvana = await (await render("/nirvana")).text();
   assert.equal([...nirvana.matchAll(/<dialog class="mm"/g)].length, 4);
   assert.match(nirvana, /shared\/lead-form\.js/);
+});
+
+test("public pages have one absolute canonical and parseable structured data", async () => {
+  for (const pathname of ["/", "/nirvana", "/nirvana/plans", "/accessibility", "/privacy"]) {
+    const html = await (await render(pathname)).text();
+    const head = html.match(/<head\b[^>]*>([\s\S]*?)<\/head>/i)?.[1] ?? "";
+    const canonical = [...head.matchAll(/<link[^>]+rel="canonical"[^>]*>/g)];
+    assert.equal(canonical.length, 1, pathname);
+    assert.ok(canonical[0][0].includes(`href="https://shanara-legacy.avivbaryaron1.chatgpt.site${pathname}"`));
+    const schemas = [...head.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)];
+    assert.equal(schemas.length, 1, pathname);
+    const schema = JSON.parse(schemas[0][1]);
+    assert.equal(schema['@context'], 'https://schema.org');
+    assert.ok(schema['@graph'].some(node => node['@type'] === 'WebSite'));
+    assert.ok(schema['@graph'].some(node => node['@type'] === 'Organization'));
+  }
+});
+
+test("crawler files list real public pages and avoid private API indexing", async () => {
+  const { readFile } = await import('node:fs/promises');
+  const robots = await readFile(new URL('../public/robots.txt', import.meta.url),'utf8');
+  const sitemap = await readFile(new URL('../public/sitemap.xml', import.meta.url),'utf8');
+  assert.match(robots, /Disallow: \/api\//);
+  assert.match(robots, /Sitemap: https:\/\/shanara-legacy\.avivbaryaron1\.chatgpt\.site\/sitemap\.xml/);
+  assert.equal([...sitemap.matchAll(/<loc>/g)].length, 5);
+  for (const route of ['/nirvana','/nirvana/plans','/accessibility','/privacy']) assert.ok(sitemap.includes(`${route}</loc>`));
+});
+
+test("mobile hero is responsive and forms disclose the WhatsApp-only flow", async () => {
+  const home = await (await render()).text();
+  assert.match(home, /hero-forest-mobile-540\.webp 540w/);
+  assert.match(home, /hero-forest-mobile-900\.webp 900w/);
+  for (const route of ['/nirvana','/nirvana/plans']) {
+    const html = await (await render(route)).text();
+    assert.match(html, /id="leadForm" novalidate inert/);
+    assert.match(html, /href="\/privacy"/);
+    assert.match(html, /אינו שומר פנייה באתר/);
+    assert.doesNotMatch(html, /src=""/);
+  }
+  const privacy = await (await render('/privacy')).text();
+  assert.match(privacy, /ללא מאגר לידים באתר/);
+  assert.match(privacy, /__cf_bm/);
 });

@@ -12,6 +12,13 @@
 
 בדיקות קוד: ראש מסמך, טעינה עצלה, קיום קבצים, תגיות שיתוף וכתובות משאבים. נבדקו גם המידות בפועל מול כל תיאור רוחב ב־srcset. יש להריץ Lighthouse מחדש בתנאים זהים כדי להשוות LCP; המספר 13.6 שניות הוא מדידת המקור שסופקה, ואינו משמש כאן כמדידה חדשה.
 
-## אימות לאחר הפרסום של גרסה 29
+## Mobile / search follow-up — 3 November 2026
 
-בכתובות הציבוריות של Sites נבדקו WebP, WOFF2 ו־CSS: האחסון ממשיך להחזיר `Cache-Control: public, max-age=0, must-revalidate` למרות `_headers`. ה־CSS מוגש עם `Content-Encoding: gzip`. לכן אין לטעון שמטמון ארוך או Brotli הופעלו ב־Sites; כללי המטמון מוכנים לפריסה ב־Netlify, שמכבד את `_headers`. לא בוצעה עדיין פריסה ל־Netlify או מדידת Lighthouse חוזרת בתנאי מעבדה.
+- Home hero now has phone-only portrait sources at 540×900 (61,114 bytes) and 900×1500 (112,806 bytes), selected through `<picture>`/`sizes`. The original 326 KB wide photograph remains the desktop source. Originals are retained.
+- Removed the entrance animation from `.heroContent`, so the logo and introductory text are not gated by a 1.4 s animated opacity reveal. This addresses the reported render-delay mechanism; it is not a new Lighthouse score or a verified 2.5 s LCP result. A fresh real-device/throttled Lighthouse run is still needed.
+- Dedicated shared `mobile-layout.css` centers visual anchors, bounds forms/cards/photos and keeps longer RTL reading text aligned naturally. Geometry checks on the phone preview measured centered hero logo/content, manifesto, world photo, album launcher and cards; responsive samples are checked at 320, 390 and 768 px.
+- The Nirvana lightbox now creates its image only when an actual photo is opened, avoiding an initial image node with an empty source.
+- `app/content/site-metadata.json` and `scripts/generate-site-metadata.mjs` maintain public canonical URLs, WebSite/Organization/WebPage JSON-LD, robots.txt and sitemap.xml. The shared asset versioning script invokes metadata generation before building.
+- A production HTTP probe advertising `Accept-Encoding: br, gzip` still returned `Content-Encoding: gzip` from the managed Sites/Cloudflare edge. Compression is controlled by that hosting layer; no fake Brotli header was added. Netlify build/export is maintained separately and no Netlify deployment was performed.
+
+Final sampled checks: no document horizontal overflow at phone (320/390), tablet (768) or desktop (1200) viewport settings; browser scrollbar may reduce the reported layout viewport. The home visual anchors measured at zero center offset on the 390 px sample. The mobile browser selected the 540 px portrait source. Axe 4.14.0 found no reported violations in the sampled home, Nirvana, plans and privacy states; background-image contrast checks remain manual/incomplete. The WhatsApp form was tested with local dummy data only, without opening the external link or sending a message.

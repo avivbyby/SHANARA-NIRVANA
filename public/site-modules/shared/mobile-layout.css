@@ -1,0 +1,71 @@
+/* Phone composition: centered visual anchors, readable RTL paragraphs, bounded controls. */
+body .shanaraPage .heroContent{animation:none!important}
+@media(max-width:900px){
+  body .shanaraPage .heroContent{justify-self:center;width:100%;max-width:42rem;margin-inline:auto;text-align:center}
+  body .shanaraPage .heroContent .logo{display:block;margin-inline:auto}
+  body .shanaraPage .heroContent .lead{margin-inline:auto}
+  body .shanaraPage .heroActions{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 28px}
+  body .shanaraPage .heroActions>a{justify-content:center}
+  body .shanaraPage .heroHeadline{text-align:center;overflow-wrap:normal}
+  body .shanaraPage .scrollCue{justify-self:center}
+  body .shanaraPage :is(.statementCopy,.manifestIntro,.soundStoryHead,.experienceHeader,.momentsHeading,.albumIntro,.nirvanaPreviewContent,.curationCopy,.joinContent,.connectionHeading)>h2{text-align:center}
+  body .shanaraPage :is(.statementCopy,.manifestIntro,.soundStoryHead,.experienceHeader,.momentsHeading,.albumIntro,.nirvanaPreviewContent,.curationCopy,.joinContent,.connectionHeading)>.kicker{justify-content:center}
+  body .shanaraPage :is(.statementCopy,.manifestIntro,.albumIntro,.curationCopy,.connectionHeading) p{margin-inline:auto}
+  body .shanaraPage .statement blockquote{text-align:center}
+  body .shanaraPage :is(.statementPhoto,.visionSheet,.worldPhoto,.moment,.connectionCard){min-width:0;max-width:100%;margin-inline:auto;box-sizing:border-box}
+  body .shanaraPage :is(.nirvanaPreviewContent,.albumIntro,.joinActions,.footerLinks,footer){text-align:center}
+  body .shanaraPage .nirvanaWordmark{margin-inline:auto}
+  body .shanaraPage .nirvanaPreviewContent>p{margin-inline:auto}
+  body .shanaraPage .worldTabs{justify-content:center}
+  body .shanaraPage .worldTabs button{justify-content:center;min-width:0;flex-wrap:wrap}
+  body .shanaraPage .connectionGrid{min-width:0}
+  body .shanaraPage .connectionCard :is(h3,p,a){overflow-wrap:anywhere}
+  body .shanaraPage .connectionHeading{display:block}
+  body .shanaraPage .connectionHeading h2{text-align:center}
+  body .shanaraPage .connectionFoot{flex-wrap:wrap;justify-content:center;text-align:center}
+  body .shanaraPage footer>img{display:block;margin-inline:auto}
+  body .shanaraPage :is(.footerLinks,.accessibilityFooter){justify-self:center;justify-content:center;margin-inline:auto}
+  .theme-exoape :is(.essMedia,.essPhoto,.teamsImg,.prodsImg,.wTile,.trackCard,.lead-wrap){min-width:0;max-width:100%;margin-inline:auto;box-sizing:border-box}
+  .theme-exoape .wTile:nth-child(n){grid-column:1/-1;width:100%}
+  .theme-exoape .eaIntro{text-align:center;justify-self:center;width:100%}
+  .theme-exoape .eaIntro .lead{margin-inline:auto;max-width:34ch}
+  .theme-exoape .eaIntro .actions{justify-content:center;align-items:center}
+  .theme-exoape .eaHero .eaH0{text-align:center}
+  .theme-exoape .sectionHead{text-align:center}
+  .theme-exoape .sectionHead>.kicker{justify-content:center}
+  .theme-exoape .sectionHead>p:not(.kicker){margin-inline:auto}
+  .theme-exoape .contact{text-align:center}
+  .theme-exoape .contact :is(.kicker,.actions,.channels){justify-content:center!important}
+  .theme-exoape .contact p.sub{margin-inline:auto}
+  .theme-exoape .footer .fBrand{text-align:center}
+  .theme-exoape .footer .fBrand>img{display:block;margin-inline:auto}
+  .theme-exoape .footer .legal{flex-wrap:wrap;justify-content:center;text-align:center}
+  .theme-exoape .accessibilityFooter{justify-content:center}
+  .theme-exoape .form :is(input,select,textarea){width:100%;min-width:0;max-width:100%;box-sizing:border-box}
+  .theme-exoape .form .submitRow{justify-content:center;text-align:center}
+}
+@media(max-width:600px){
+  body .shanaraPage .heroContent{max-width:100%;padding-top:62px}
+  body .shanaraPage .heroHeadline{font-size:clamp(40px,11.5vw,66px);line-height:1.16}
+  body .shanaraPage .soundStoryHead :is(h2,p){text-align:center}
+  body .shanaraPage .soundStory figcaption{text-align:center}
+  body .shanaraPage .steps{gap:24px}
+  body .shanaraPage .steps article{padding-block:15px;text-align:start}
+  body .shanaraPage .steps p{max-width:none}
+  body .shanaraPage .joinActions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 24px}
+  .theme-exoape .eaIntro .actions{flex-direction:row;flex-wrap:wrap;gap:4px 22px}
+  .theme-exoape .eaHeroFoot{justify-content:center;flex-wrap:wrap}
+  .theme-exoape .eaHeroFoot .chips{justify-content:center;flex-wrap:wrap}
+  .theme-exoape .form .submitRow>.btn{width:100%;padding-inline:12px;white-space:normal}
+  .theme-exoape .lead-wrap{padding:24px 16px}
+  .theme-exoape .lead-wrap .side h3{text-align:center;font-size:clamp(29px,8vw,40px)}
+  .theme-exoape .lead-wrap .side>p{max-width:36ch;margin-inline:auto}
+  .theme-exoape .trackCard :is(h3,p),.theme-exoape .pkg :is(h3,p),.theme-exoape .pkg2 :is(h3,p){overflow-wrap:anywhere}
+}
+
+.shanaraPage .heroBackdrop picture{display:block;width:100%;height:100%}
+.form .formPrivacy{grid-column:1/-1;font-size:14px;line-height:1.8;color:#5f5147;margin:0 0 12px}
+.form .formPrivacy a{color:#862420;text-decoration:underline;text-underline-offset:3px}
+
+@media(max-width:900px){body .shanaraPage .curationTitle h2{text-align:center}body .shanaraPage .curationTitle .kicker{justify-content:center}body .shanaraPage .connectionHeading>div>p{margin-inline:auto}body .shanaraPage .privacyLine{text-align:center}body .shanaraPage .heroActions{flex-direction:row}}
+@media(max-width:600px){.theme-exoape .form .success{text-align:center}.theme-exoape .form .success .btn{margin:12px auto 0;max-width:100%;white-space:normal}.theme-exoape .footer .legal .family{margin-inline:auto}}

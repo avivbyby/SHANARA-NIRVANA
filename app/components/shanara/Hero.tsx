@@ -4,7 +4,7 @@ import { Arrow } from "./Primitives";
 export default function Hero() {
   return (
 <section className="hero" id="top">
-<div className="heroBackdrop" aria-hidden="true"><img src="/shanara-photos/ALX_4239.webp" alt="" fetchPriority="high" width={2048} height={1365} /></div>
+<div className="heroBackdrop" aria-hidden="true"><picture><source media="(max-width: 700px)" srcSet="/shanara-photos/hero-forest-mobile-540.webp 540w, /shanara-photos/hero-forest-mobile-900.webp 900w" sizes="100vw" /><img src="/shanara-photos/ALX_4239.webp" alt="" fetchPriority="high" width={2048} height={1365} /></picture></div>
 
         <div className="heroContent">
           <p className="eyebrow">UNDERGROUND COMMUNITY · ISRAEL</p>
