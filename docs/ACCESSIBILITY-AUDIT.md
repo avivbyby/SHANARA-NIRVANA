@@ -10,7 +10,7 @@ Scope: SHANARA home, Nirvana, Nirvana plans and the accessibility statement. Thi
 - Improved secondary-text contrast and heading hierarchy.
 - Full readable text alternative to the manifesto image.
 - OS reduced-motion support and per-page `?static=1` links.
-- Public `/accessibility` page linked from all footers. Uses existing public contact channels; no invented officer or certification.
+- Public `/accessibility` page linked from all footers. WEBaby is identified as the website maintainer and accessibility inquiry contact, with the owner-supplied public telephone and WhatsApp number 050-975-1120. No accessibility officer or certification is invented.
 
 ## Verification
 
@@ -22,7 +22,7 @@ Manual keyboard checks: gallery Enter, Shift+Tab/Tab wrap, Escape and trigger fo
 
 - Automated tools leave image-background contrast and references to currently hidden controlled dialogs for manual review. Zero automated findings does not establish complete compliance.
 - Complete real VoiceOver/Safari and NVDA/Windows testing, 200–400% zoom, user testing with assistive technologies and independent professional accessibility review remain outstanding.
-- Owner should verify the legal operating entity, appropriate public accessibility contact/person, applicable obligations and any exemption with a qualified professional. The statement currently uses existing public team contacts.
+- Owner should verify the legal operating entity, applicable obligations and any exemption with a qualified professional. The owner supplied WEBaby as the maintainer and public contact for website accessibility inquiries; this does not identify the event operator or appoint a legally required accessibility officer.
 - Event-specific physical accessibility arrangements must be collected and published for each venue; no unverified physical-access claims were added.
 - External albums, tickets, Instagram and WhatsApp require separate assessment or an alternative service when needed.
 - New content must preserve meaningful image descriptions, heading order, visible names, contrast and keyboard operation.

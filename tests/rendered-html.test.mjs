@@ -152,7 +152,9 @@ test("accessibility statement, text manifesto and accessibility resources are se
   assert.match(home, /קריאת החזון המלא בטקסט/);
   const statement = await (await render("/accessibility")).text();
   assert.match(statement, /lang="he"/);
-  assert.match(statement, /tel:\+972549405700/);
+  assert.match(statement, /tel:\+972509751120/);
+  assert.match(statement, /href="https:\/\/wa\.me\/972509751120"/);
+  assert.match(statement, /WEBaby/);
   assert.match(statement, /אינן אישור עמידה מלא/);
   const nirvana = await (await render("/nirvana")).text();
   assert.equal([...nirvana.matchAll(/<dialog class="mm"/g)].length, 4);
