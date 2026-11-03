@@ -105,7 +105,7 @@ test("renders available albums and the community, Instagram and event destinatio
 test("All Stars groups both supplied albums under one event", async () => {
   const html = await (await render()).text();
   assert.match(html, /data-event-id="all-stars"/);
-  assert.match(html, /האלבומים של All Stars/);
+  assert.match(html, /All Stars/);
   assert.match(html, /2 אלבומים/);
   assert.ok(html.includes('href="https://lightroom.adobe.com/shares/af15e43f976a49cc8c1d70c1946a3044"'));
   assert.ok(html.includes('href="https://photos.app.goo.gl/m5u7izGsMinckmtB6"'));
@@ -138,4 +138,23 @@ test("unavailable album stays listed without a broken outbound link", async () =
   assert.match(html, /Back to the source/);
   assert.match(html, /האלבום לא זמין כרגע/);
   assert.doesNotMatch(html, /href="https:\/\/shelchyk\.pixieset\.com/);
+});
+
+
+test("accessibility statement, text manifesto and accessibility resources are served", async () => {
+  for (const route of ["/", "/nirvana", "/nirvana/plans", "/accessibility"]) {
+    const html = await (await render(route)).text();
+    assert.match(html, /הצהרת נגישות/);
+    assert.match(html, /accessibility\.css/);
+    assert.match(html, /tabindex="-1"/i);
+  }
+  const home = await (await render()).text();
+  assert.match(home, /קריאת החזון המלא בטקסט/);
+  const statement = await (await render("/accessibility")).text();
+  assert.match(statement, /lang="he"/);
+  assert.match(statement, /tel:\+972549405700/);
+  assert.match(statement, /אינן אישור עמידה מלא/);
+  const nirvana = await (await render("/nirvana")).text();
+  assert.equal([...nirvana.matchAll(/<dialog class="mm"/g)].length, 4);
+  assert.match(nirvana, /shared\/lead-form\.js/);
 });

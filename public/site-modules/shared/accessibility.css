@@ -1,0 +1,57 @@
+/* Shared accessibility fixes for the React and standalone pages. */
+html{scroll-padding-top:100px}
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{outline:3px solid #a42c27!important;outline-offset:4px!important;box-shadow:0 0 0 6px #fff8ec!important}
+:where(a,button,input,select,textarea,summary,[tabindex]){touch-action:manipulation}
+.srOnly{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.skip,.skipLink{position:fixed!important;z-index:9999!important;inset-inline-start:12px!important;top:12px!important;transform:translateY(-180%);background:#35251f!important;color:#fff!important;padding:12px 18px!important;line-height:1.5;max-width:calc(100vw - 24px)}
+.skip:focus,.skipLink:focus{transform:none!important}
+.shanaraPage{--muted:#675044!important}
+.shanaraPage .kicker{opacity:1!important;color:#685247!important}
+.shanaraPage :is(.hero,.experienceHeader,.worldCopy) .kicker{color:#d6c6b8!important}
+.shanaraPage .nirvanaPreview .kicker{color:#e0ccbb!important}
+.theme-exoape{--faint:#68615b!important;--muted:#5f5a55!important}
+.theme-exoape .galleryNote{color:#68615b!important}
+.theme-exoape .footer :is(.fHead,.legal){color:#bfae9f!important;opacity:1}
+.footer .fHead{font:400 .9rem/1.5 var(--f-body);letter-spacing:.02em;margin:0 0 18px}
+.theme-exoape .footer .fHead{color:#bfae9f}
+body>.mm{margin:0;max-width:none;max-height:none;color:#e4e0db}
+dialog.mm:not([open]),dialog.lb2:not([open]){display:none!important}
+dialog.lb2{margin:0;padding:65px 12px 22px;width:100%;height:100dvh;max-width:none;max-height:none;border:0;overflow:auto;color:#f6ecdc}
+dialog.lb2::backdrop,dialog.mm::backdrop{background:#171311b3}
+.lb2 .x{z-index:3}
+.lb2 figcaption{opacity:1;color:#ead5b9}
+[data-gallery][role="button"]{cursor:zoom-in}
+.nav.open .navLinks{overflow-y:auto;overscroll-behavior:contain;max-height:100dvh;padding-top:110px!important;justify-content:flex-start!important}
+.nav.open .navLinks>a:first-child{margin-block-start:auto}
+.formErrors{grid-column:1/-1;padding:18px;border:2px solid #9e2622;background:#fff6eb;color:#76201d;line-height:1.7}
+.formErrors[hidden],.fieldError[hidden]{display:none!important}
+.formErrors a{text-decoration:underline!important;color:inherit}
+.fieldError{display:block;color:#8d201b;font-size:.9rem;line-height:1.6;margin-top:5px}
+.form [aria-invalid="true"]{border:2px solid #9e2622!important}
+.form .success:focus{outline:3px solid #195b35;outline-offset:4px}
+.form .requiredNote{grid-column:1/-1;font-size:.9rem;color:#5f5147}
+.accessibilityFooter{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin-top:24px;font-size:14px;line-height:1.6}
+.accessibilityFooter a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline!important;text-underline-offset:4px}
+.visionTranscript{margin-top:25px;line-height:1.9;font-size:16px;color:#35251f}
+.visionTranscript summary{padding:12px 0;cursor:pointer;color:#713c2d;text-decoration:underline;text-underline-offset:4px}
+.visionTranscript h3{font-size:22px!important;font-weight:500!important;margin:24px 0 10px!important}
+.visionTranscript p,.visionTranscript ul{margin:12px 0!important}
+html.static *,html.static *::before,html.static *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+html.static .shanaraPage :is(.heroBackdrop img,.motionPhotoFrame>img,.moment .photoTrigger,.motionOrbit){transform:none!important;will-change:auto}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.eaPx img,[data-parallax],.eaHeroBg img,.masonry>.gItem{transform:none!important}}
+@media(max-width:600px){.accessibilityFooter{gap:6px 22px}.lb2 img{max-height:65dvh}.lb2 .prev,.lb2 .next{top:auto;bottom:12px;transform:none}.lb2 figcaption{padding-bottom:65px}.nav.open .navLinks a{overflow-wrap:anywhere}}
+.shanaraPage :is(.momentsHeading,.albumIntro)>.kicker{color:#685247!important}
+.shanaraPage :is(.curationTitle,.albumMenuHeader)>.kicker{color:#d6c6b8!important}
+.shanaraPage .worldTabs button>span:first-child{opacity:1;color:#b4a99e}
+html.theme-exoape body{--faint:#68615b!important;--muted:#5f5a55!important}
+.theme-exoape :is(.essGoals b,.founders cite,.wTile .wEn,.tcBody>span,.form .demoNote){opacity:1!important;color:#68615b!important}
+.theme-exoape .pkg2:not(.featured) .for{color:#953c2c!important}
+.theme-exoape .pkg2.featured .btn{color:#f1dfcc!important}
+.galleryTrigger{display:block;position:relative;width:100%;height:100%;padding:0;border:0;background:transparent;border-radius:inherit;line-height:0;cursor:zoom-in}
+.galleryTrigger:focus-visible{outline:3px solid #fff!important;outline-offset:-7px!important;box-shadow:inset 0 0 0 10px #862420!important}
+.gItem:focus-within figcaption{opacity:1;transform:none}
+.shanaraPage .heroBackdrop:after{background:rgba(13,14,19,.58)}
+.shanaraPage .hero :is(.eyebrow,.lead,.curated,.scrollCue){color:#fff;opacity:1}
+.theme-exoape .eaHeroBg:after{background:rgba(13,14,19,.58)}
+.theme-exoape .eaHero :is(.lead,.eaScroll,.eaHeroFoot){color:#fff;opacity:1}
+.theme-exoape .mm .wEn{color:#c6b6a6!important;opacity:1!important}

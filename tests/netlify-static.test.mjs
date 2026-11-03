@@ -5,9 +5,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("../dist-netlify/", import.meta.url));
-const routes = ["index.html", "nirvana/index.html", "nirvana/plans/index.html"];
+const routes = ["index.html", "nirvana/index.html", "nirvana/plans/index.html", "accessibility/index.html"];
 
-test("Netlify output contains three complete prerendered routes", async () => {
+test("Netlify output contains four complete prerendered routes", async () => {
   const pages = await Promise.all(routes.map(route => readFile(path.join(root, route), "utf8")));
   for (const page of pages) {
     assert.match(page, /<html[^>]+lang="he"/);
@@ -33,7 +33,7 @@ test("all local HTML resources and route links resolve in the output", async () 
     const html = await readFile(path.join(root, route), "utf8");
     const paths = [...html.matchAll(/(?:src|href)="(\/[^"?#]*)(?:[?#][^"]*)?"/g)].map(match => match[1]);
     for (const localPath of new Set(paths)) {
-      const target = localPath === "/" ? "index.html" : ["/nirvana", "/nirvana/", "/nirvana/plans", "/nirvana/plans/"].includes(localPath) ? `${localPath.replace(/^\/+|\/+$/g, "")}/index.html` : localPath.slice(1);
+      const target = localPath === "/" ? "index.html" : ["/nirvana", "/nirvana/", "/nirvana/plans", "/nirvana/plans/", "/accessibility", "/accessibility/"].includes(localPath) ? `${localPath.replace(/^\/+|\/+$/g, "")}/index.html` : localPath.slice(1);
       await access(path.join(root, target)).catch(() => assert.fail(`${route}: missing ${localPath}`));
     }
   }

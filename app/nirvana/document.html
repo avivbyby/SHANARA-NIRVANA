@@ -13,6 +13,7 @@
 <meta name="theme-color" content="#8f1a14">
 <link rel="stylesheet" href="/fonts/fonts-v1.css?v=1da0c8de06de">
 <link rel="stylesheet" href="/site-modules/shared/nirvana-editorial.css?v=5390b2243d63">
+<link rel="stylesheet" href="/site-modules/shared/accessibility.css?v=7176aa47f98e">
 <meta name="theme-color" content="#0d0e13">
 </head>
 <body class="grain nv2 ea">
@@ -51,7 +52,7 @@
 </svg>
 <a class="skip" href="#main">דילוג לתוכן</a>
 
-<header class="nav" aria-label="ניווט Nirvana">
+<div role="banner" class="nav" aria-label="ניווט Nirvana">
   <a class="brand" href="#top" aria-label="NIRVANA by SHANARA — ראש העמוד">
     <img class="bMark" src="/nirvana-assets/nirvana-mark-red.webp" alt="" width="160" height="110">
     <img class="bWord" src="/nirvana-assets/nirvana-wordmark-red.webp" alt="NIRVANA by SHANARA" width="400" height="79">
@@ -68,10 +69,10 @@
     <a class="btn btn-primary btn-sm" href="#lead">להזמנת Nirvana <span class="arr">←</span></a>
   </nav>
   <button class="menuBtn" type="button" aria-label="תפריט" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
-</header>
+</div>
 
 
-<main id="main">
+<main id="main" tabindex="-1">
 <section class="hero eaHero" id="top">
   <figure class="eaHeroBg" aria-hidden="true"><img src="/nirvana-assets/nirvana/desert-ritual-duo.webp" alt="" fetchpriority="high" srcset="/nirvana-assets/nirvana/desert-ritual-duo-sm.webp 720w, /nirvana-assets/nirvana/desert-ritual-duo-md.webp 1080w, /nirvana-assets/nirvana/desert-ritual-duo.webp 1200w" sizes="100vw" width="1200" height="800"></figure>
   <div class="eaHeroIn">
@@ -165,7 +166,7 @@
       </button>
     </div>
     <div class="mmPanels">
-      <div class="mm" id="mm-treatments" data-key="treatments" role="dialog" aria-modal="true" aria-labelledby="mm-treatments-t">
+      <dialog class="mm" id="mm-treatments" data-key="treatments" role="dialog" aria-modal="true" aria-labelledby="mm-treatments-t">
         <div class="mmHead">
           <span class="wEn">TREATMENTS</span>
           <button type="button" class="mmX" aria-label="סגירה">✕</button>
@@ -192,8 +193,8 @@
           <p class="mmDesc">מגע מרפא בידיים של מטפלים מנוסים, על מיטות טיפולים תחת חופה לבנה, בצל העצים או באור השקיעה. עיסוי, עבודת גוף ומתיחות מונחות שמשחררות את מה שהגוף אוסף, וטיפולי סאונד אישיים שבהם הצליל נוגע ממש קרוב.</p>
           <div class="mmActions"><div class="mmSwitch" role="group" aria-label="מעבר לעולם אחר"></div><a href="#lead" class="btn btn-primary mmCta">להזמנת Nirvana <span class="arr">←</span></a></div>
         </div>
-      </div>
-      <div class="mm" id="mm-bodysoul" data-key="bodysoul" role="dialog" aria-modal="true" aria-labelledby="mm-bodysoul-t">
+      </dialog>
+      <dialog class="mm" id="mm-bodysoul" data-key="bodysoul" role="dialog" aria-modal="true" aria-labelledby="mm-bodysoul-t">
         <div class="mmHead">
           <span class="wEn">BODY & SOUL</span>
           <button type="button" class="mmX" aria-label="סגירה">✕</button>
@@ -218,8 +219,8 @@
           <p class="mmDesc">מסע של סאונד הילינג עם קערות טיבטיות, גונג ופעמוני טינגשה, נשימה מונחית והרפיה עמוקה. שוכבים על מזרנים צבעוניים, בכיפה, תחת סככת צל במדבר או מול נוף של יער, ונותנים לצליל ולנשימה להרגיע את מערכת העצבים ולרכך את הלב.</p>
           <div class="mmActions"><div class="mmSwitch" role="group" aria-label="מעבר לעולם אחר"></div><a href="#lead" class="btn btn-primary mmCta">להזמנת Nirvana <span class="arr">←</span></a></div>
         </div>
-      </div>
-      <div class="mm" id="mm-movement" data-key="movement" role="dialog" aria-modal="true" aria-labelledby="mm-movement-t">
+      </dialog>
+      <dialog class="mm" id="mm-movement" data-key="movement" role="dialog" aria-modal="true" aria-labelledby="mm-movement-t">
         <div class="mmHead">
           <span class="wEn">MOVEMENT</span>
           <button type="button" class="mmX" aria-label="סגירה">✕</button>
@@ -244,8 +245,8 @@
           <p class="mmDesc">יוגה בזריחה, תחת הפרגולה או בצל המדבר, מתיחות מונחות בזוגות ותנועה חופשית בלי צעדים ובלי שיפוט. תנועה שמחזירה את הגוף לחיים ומזכירה לו שמותר לו לשמוח.</p>
           <div class="mmActions"><div class="mmSwitch" role="group" aria-label="מעבר לעולם אחר"></div><a href="#lead" class="btn btn-primary mmCta">להזמנת Nirvana <span class="arr">←</span></a></div>
         </div>
-      </div>
-      <div class="mm" id="mm-mind" data-key="mind" role="dialog" aria-modal="true" aria-labelledby="mm-mind-t">
+      </dialog>
+      <dialog class="mm" id="mm-mind" data-key="mind" role="dialog" aria-modal="true" aria-labelledby="mm-mind-t">
         <div class="mmHead">
           <span class="wEn">MINDFULNESS</span>
           <button type="button" class="mmX" aria-label="סגירה">✕</button>
@@ -272,7 +273,7 @@
           <p class="mmDesc">מדיטציה, טקסים ומעגלי שיתוף שמזמינים לעצור ולהקשיב פנימה. טקס קטורת וקערות מול הרי המדבר, סדנאות מונחות תחת הפרגולה ומעגלים שבהם כל קול מתקבל באהבה, בקבלה ובחמלה. כלים פשוטים לנוכחות ולחוסן רגשי שנשארים איתכם גם אחרי.</p>
           <div class="mmActions"><div class="mmSwitch" role="group" aria-label="מעבר לעולם אחר"></div><a href="#lead" class="btn btn-primary mmCta">להזמנת Nirvana <span class="arr">←</span></a></div>
         </div>
-      </div>
+      </dialog>
     </div>
   </div>
 </section>
@@ -494,10 +495,10 @@
         <ul><li>שיחת היכרות קצרה</li><li>הצעה מותאמת לקהל ולמקום</li><li>תיאום והפקה מלאה</li></ul>
         <span class="demoNote">ממלאים כאן, ממשיכים לשיחה בוואטסאפ ושולחים כשמוכנים.</span>
       </div>
-      <form class="form" id="leadForm" novalidate>
-        <label>שם מלא<input name="name" required autocomplete="name" placeholder="איך קוראים לך?"></label>
-        <label>חברה / הפקה<input name="company" required autocomplete="organization" placeholder="שם החברה או ההפקה"></label>
-        <label>טלפון<input name="phone" type="tel" required autocomplete="tel" placeholder="050-0000000" dir="ltr" style="text-align:right"></label>
+      <form class="form" id="leadForm" novalidate><p class="requiredNote">שדות המסומנים ב״חובה״ נדרשים להמשך.</p>
+        <label>שם מלא (חובה)<input name="name" required autocomplete="name" placeholder="איך קוראים לך?"></label>
+        <label>חברה / הפקה (חובה)<input name="company" required autocomplete="organization" placeholder="שם החברה או ההפקה"></label>
+        <label>טלפון (חובה)<input name="phone" type="tel" required autocomplete="tel" placeholder="050-0000000" dir="ltr" style="text-align:right"></label>
         <label>אימייל<input name="email" type="email" autocomplete="email" placeholder="name@company.com" dir="ltr" style="text-align:right"></label>
         <label>מספר משתתפים<select name="size"><option value="">בחרו</option><option>עד 20</option><option>20–50</option><option>50–150</option><option>150+</option></select></label>
         <label>סוג הפעילות<select name="type" id="f-type"><option value="">בחרו</option><option value="reset">Nirvana Reset</option><option value="day">Nirvana Day</option><option value="retreat">Nirvana Retreat</option><option value="prod">מתחם Nirvana להפקה</option><option value="other">עוד לא בטוחים</option></select></label>
@@ -565,7 +566,7 @@
         <p>מרחב טיפולי, חווייתי ולימודי שמחבר גוף, תודעה וקהילה. מייסדים: שון בורנס ונוי לוי.</p>
       </div>
       <div>
-        <h4>NIRVANA</h4>
+        <h2 class="fHead">NIRVANA</h2>
         <ul>
           <li><a href="#essence">המהות</a></li>
           <li><a href="#experiences">מה קורה במרחב</a></li>
@@ -575,7 +576,7 @@
         </ul>
       </div>
       <div>
-        <h4>צור קשר</h4>
+        <h2 class="fHead">צור קשר</h2>
         <ul>
           <li><a href="https://wa.me/972549405700" target="_blank" rel="noreferrer">וואטסאפ · <span dir="ltr">054-940-5700</span></a></li>
           
@@ -588,22 +589,23 @@
       <a class="family" href="/" aria-label="חזרה לשנארה"><img src="/nirvana-assets/nirvana-mark-red.webp" alt="" width="160" height="110"><img class="fWord" src="/nirvana-assets/nirvana-wordmark-red.webp" alt="NIRVANA by SHANARA" width="400" height="79"></a>
     </div>
   </div>
+<nav class="accessibilityFooter" aria-label="נגישות"><a href="/accessibility">הצהרת נגישות</a><a href="?static=1">הצגת הדף ללא הנפשות</a></nav>
 </footer>
 
 
 
-<div class="mobileBar"><a class="btn btn-primary" href="#tracks">להזמנת Nirvana <span class="arr">←</span></a></div>
+<nav class="mobileBar" aria-label="הזמנה במובייל"><a class="btn btn-primary" href="#tracks">להזמנת Nirvana <span class="arr">←</span></a></nav>
 
 
 <script src="/site-modules/shared/vendor-lenis.js?v=07020831fc52"></script>
 <script src="/site-modules/shared/scroll-reveal.js?v=720b61106b2a"></script>
 <script src="/site-modules/shared/photo-drift.js?v=af064c899dfa"></script>
-<script src="/site-modules/shared/gallery.js?v=2fa3f8c0a121"></script>
-<script src="/site-modules/shared/navigation.js?v=208f6831a233"></script>
-<script src="/site-modules/shared/worlds.js?v=d766bbbe9ee9"></script>
+<script src="/site-modules/shared/gallery.js?v=5d3275f67c63"></script>
+<script src="/site-modules/shared/navigation.js?v=e0831f1e0ae9"></script>
+<script src="/site-modules/shared/worlds.js?v=62b0661f0902"></script>
 <script src="/site-modules/shared/journey.js?v=7e5b2b168720"></script>
-<script src="/site-modules/nirvana/lead-form.js?v=75e68715d86f"></script>
+<script src="/site-modules/shared/lead-form.js?v=e2abab088eef"></script>
 <script src="/site-modules/shared/booking-bar.js?v=faeffcd24949"></script>
-<script src="/site-modules/shared/editorial-motion.js?v=d1df0b6a3a1a"></script>
+<script src="/site-modules/shared/editorial-motion.js?v=1d725ba06f5c"></script>
 </body>
 </html>

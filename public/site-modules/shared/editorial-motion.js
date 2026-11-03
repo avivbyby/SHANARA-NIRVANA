@@ -48,11 +48,7 @@
   /* ---- 4. menu: Esc closes the full-screen menu ---- */
   const nav = document.querySelector('.nav');
   const menuBtn = nav && nav.querySelector('.menuBtn');
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && nav && nav.classList.contains('open')) {
-      nav.classList.remove('open'); menuBtn && menuBtn.setAttribute('aria-expanded', 'false'); menuBtn && menuBtn.focus();
-    }
-  });
+
 
   if (still) return;
 

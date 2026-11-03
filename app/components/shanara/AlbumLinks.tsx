@@ -54,7 +54,7 @@ export default function AlbumLinks() {
         {albumEvents.map((event, index) => {
           const angle = (-90 + index * 360 / albumEvents.length) * Math.PI / 180;
           const availableCount = event.albums.filter(album => album.available !== false).length;
-          return <button className="albumMenuLink albumEventTrigger" key={event.id} data-event-id={event.id} type="button" ref={node => { if (node) eventButtons.current.set(event.id, node); else eventButtons.current.delete(event.id); }} onClick={() => setSelectedId(event.id)} aria-label={`האלבומים של ${event.label}`} style={{ "--album-x": `${50 + 35 * Math.cos(angle)}%`, "--album-y": `${50 + 36 * Math.sin(angle)}%`, "--album-delay": `${index * 85 + 120}ms` } as CSSProperties}>
+          return <button className="albumMenuLink albumEventTrigger" key={event.id} data-event-id={event.id} type="button" ref={node => { if (node) eventButtons.current.set(event.id, node); else eventButtons.current.delete(event.id); }} onClick={() => setSelectedId(event.id)} style={{ "--album-x": `${50 + 35 * Math.cos(angle)}%`, "--album-y": `${50 + 36 * Math.sin(angle)}%`, "--album-delay": `${index * 85 + 120}ms` } as CSSProperties}>
             <span className="albumMenuNumber" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><span className="albumMenuName" dir="ltr">{event.label}</span>{availableCount ? <AlbumActionMark className="albumMenuArrow" /> : <span className="albumMenuArrow albumUnavailableMark" aria-hidden="true" />}<span className="albumEventCount">{availableCount === 0 ? "האלבום לא זמין כרגע" : availableCount === 1 ? "אלבום אחד" : `${availableCount} אלבומים`}</span>
           </button>;
         })}

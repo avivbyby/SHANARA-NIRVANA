@@ -9,6 +9,9 @@ export function useEditorialMotion(stage: RefObject<HTMLDivElement | null>, onCh
     const root = stage.current;
     if (!root || !("IntersectionObserver" in window)) return;
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const staticMode = new URLSearchParams(window.location.search).get("static") === "1";
+    if (staticMode) document.documentElement.classList.add("static");
+    const reduced = () => preference.matches || staticMode;
     const reveals = Array.from(root.querySelectorAll<HTMLElement>(".motionLine, .statementCopy > p, .statementPhoto, .manifestIntro > p, .visionSheet, .soundStoryHead > p, .worldTabs > button, .curationCopy, .steps article, .nirvanaPreviewContent > p, .moment figcaption, .albumLauncher, .connectionCard, .connectionFoot"));
     let photos = Array.from(root.querySelectorAll<HTMLElement>(".motionPhotoFrame"));
     const gallery = Array.from(root.querySelectorAll<HTMLElement>(".moment"));
@@ -23,7 +26,7 @@ export function useEditorialMotion(stage: RefObject<HTMLDivElement | null>, onCh
       const node = entry.target as HTMLElement;
       if (!entry.isIntersecting) return;
       observer.unobserve(node);
-      if (preference.matches) { node.style.removeProperty("opacity"); return; }
+      if (reduced()) { node.style.removeProperty("opacity"); return; }
       const line = node.classList.contains("motionLine");
       const number = line ? Number(node.dataset.line) : Array.from(node.parentElement?.children ?? []).indexOf(node);
       const from = window.innerWidth <= 900 && !line ? { opacity: 0, transform: "translateY(12px)" } : hidden.get(node) ?? { opacity: 0, transform: "translateY(75px)" };
@@ -40,7 +43,7 @@ export function useEditorialMotion(stage: RefObject<HTMLDivElement | null>, onCh
       const lateral = node.matches(".statementPhoto,.visionSheet,.curationCopy,.albumLauncher,.connectionCard");
       const distance = initialWidth < 700 ? 35 : motionSettings.sideDistance;
       hidden.set(node, { opacity: 0, transform: line ? "translateY(115%) rotate(2deg)" : lateral ? `translate3d(${index % 2 ? -distance : distance}px,65px,0) scale(.94)` : "translate3d(0,75px,0)" });
-      if (!preference.matches) node.style.opacity = "0";
+      if (!reduced()) node.style.opacity = "0";
       observer.observe(node);
     });
     let frame = 0;
@@ -61,7 +64,7 @@ export function useEditorialMotion(stage: RefObject<HTMLDivElement | null>, onCh
       let current = "#top";
       for (const section of chapters) if (section.getBoundingClientRect().top < height * .45) current = `#${section.id}`;
       onChapter(current);
-      if (preference.matches) return;
+      if (reduced()) return;
       if (hero && window.scrollY < hero.offsetHeight + height) {
         hero.style.setProperty("--hero-drift", `${(window.scrollY * motionSettings.heroDrift).toFixed(1)}px`);
         hero.style.setProperty("--hero-zoom", String(1.08 + clamp(window.scrollY / height) * .06));
@@ -90,7 +93,7 @@ export function useEditorialMotion(stage: RefObject<HTMLDivElement | null>, onCh
       if (orbit) { const rect = orbit.parentElement!.getBoundingClientRect(); if (rect.bottom > 0 && rect.top < height) orbit.style.setProperty("--orbit-turn", `${(height - rect.top) * .09}deg`); }
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
-    const changed = () => { if (preference.matches) clear(); schedule(); };
+    const changed = () => { if (reduced()) clear(); schedule(); };
     window.addEventListener("scroll", schedule, { passive: true }); window.addEventListener("resize", schedule); preference.addEventListener("change", changed);
     const contentChanged = new MutationObserver(() => { photos = Array.from(root.querySelectorAll<HTMLElement>(".motionPhotoFrame")); schedule(); });
     contentChanged.observe(root, { childList: true, subtree: true });

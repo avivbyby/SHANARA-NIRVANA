@@ -1,3 +1,4 @@
+import VisionTranscript from "./VisionTranscript";
 import AnimatedHeading from "./AnimatedHeading";
 
 export default function Vision() {
@@ -34,6 +35,7 @@ export default function Vision() {
         <div className="manifestIntro"><p className="kicker">המניפסט</p><AnimatedHeading>אותה כוונה.<br />מעגל שמתרחב.</AnimatedHeading><p>מה מניע אותנו ואיך נראה העולם שאנחנו בונים — במילים שלנו.</p></div>
         <div className="visionSheet">
           <img src="/shanara-vision.webp" srcSet="/shanara-vision-sm.webp 700w, /shanara-vision.webp 1200w" sizes="(max-width:900px) calc(100vw - 44px), 46vw" loading="lazy" decoding="async" alt="החזון המלא של SHANARA Legacy" width={1200} height={1924} />
+          <VisionTranscript />
         </div>
       </section>
   </>);

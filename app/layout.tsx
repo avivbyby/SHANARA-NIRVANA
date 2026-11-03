@@ -9,6 +9,7 @@ export const metadata: Metadata = { title };
 // Explicit head elements stay in the initial HTML even when the runtime streams metadata.
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="he" dir="rtl"><head>
+    <link rel="stylesheet" href="/site-modules/shared/accessibility.css" />
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

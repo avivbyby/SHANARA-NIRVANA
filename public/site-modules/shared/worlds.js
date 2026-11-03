@@ -48,12 +48,13 @@
   const open = (key, keepFocus) => {
     const p = document.getElementById('mm-' + key);
     if (!p) return;
-    if (current && current !== p) { current.classList.remove('open', 'vis'); current.setAttribute('aria-hidden', 'true'); }
+    if (current && current !== p) { current.classList.remove('open', 'vis'); current.setAttribute('aria-hidden', 'true'); current.close(); }
     if (!keepFocus) lastFocus = document.activeElement;
     current = p;
     p.removeAttribute('aria-hidden');
     p.classList.remove('open');
     p.classList.add('vis');
+    if (!p.open) p.showModal();
     p.scrollTop = 0;
     layout(p);
     document.body.style.overflow = 'hidden';
@@ -63,7 +64,7 @@
   };
   const close = () => {
     if (!current) return;
-    current.classList.remove('open', 'vis'); current.setAttribute('aria-hidden', 'true');
+    current.classList.remove('open', 'vis'); current.setAttribute('aria-hidden', 'true'); current.close();
     current = null; document.body.style.overflow = '';
     if (lastFocus) lastFocus.focus({ preventScroll: true });
   };
@@ -71,6 +72,7 @@
 
   panels.forEach(p => {
     p.setAttribute('aria-hidden', 'true');
+    p.addEventListener('cancel', event => { event.preventDefault(); close(); });
     p.querySelector('.mmX').addEventListener('click', close);
     p.querySelector('.mmCta').addEventListener('click', close);
     p.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => open(b.dataset.go, true)));

@@ -25,14 +25,14 @@ try {
   const template = await readFile(indexPath, "utf8");
   if (!template.includes("<!--shanara-app-->")) throw new Error("Missing prerender slot");
   await writeFile(indexPath, template.replace("<!--shanara-app-->", render()).replaceAll("https://shanara-legacy.avivbaryaron1.chatgpt.site", origin));
-  for (const route of ["nirvana", "nirvana/plans"]) {
+  for (const route of ["nirvana", "nirvana/plans", "accessibility"]) {
     const directory = path.join(output, route);
     await mkdir(directory, { recursive: true });
     const document = await readFile(path.join(project, "app", route, "document.html"), "utf8");
     await writeFile(path.join(directory, "index.html"), document.replaceAll("https://shanara-legacy.avivbaryaron1.chatgpt.site", origin));
   }
   await writeFile(path.join(output, "404.html"), '<!doctype html><html lang="he" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>העמוד לא נמצא | SHANARA</title><body><main><h1>העמוד לא נמצא</h1><a href="/">חזרה לשנארה</a></main></body></html>');
-  console.log("Netlify static site ready: dist-netlify (/, /nirvana, /nirvana/plans)");
+  console.log("Netlify static site ready: dist-netlify (/, /nirvana, /nirvana/plans, /accessibility)");
 } finally {
   await rm(renderer, { recursive: true, force: true });
 }

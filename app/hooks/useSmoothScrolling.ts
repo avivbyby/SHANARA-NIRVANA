@@ -8,11 +8,14 @@ declare global { interface Window { Lenis?: new (options: Record<string, unknown
 export function useSmoothScrolling() {
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const staticMode = new URLSearchParams(window.location.search).get("static") === "1";
+    if (staticMode) document.documentElement.classList.add("static");
+    const reduced = () => preference.matches || staticMode;
     let engine: ScrollEngine | undefined;
     let frame = 0;
     let disposed = false;
     const start = () => {
-      if (disposed || preference.matches || !window.Lenis || engine) return;
+      if (disposed || reduced() || !window.Lenis || engine) return;
       engine = new window.Lenis({ lerp: 0.09, smoothWheel: true, syncTouch: false, anchors: true, prevent: (node: HTMLElement) => Boolean(node.closest("dialog")) });
       const tick = (time: number) => {
         if (!engine) return;
@@ -24,7 +27,7 @@ export function useSmoothScrolling() {
       frame = requestAnimationFrame(tick);
     };
     const stop = () => { cancelAnimationFrame(frame); engine?.destroy(); engine = undefined; };
-    const change = () => { if (preference.matches) stop(); else start(); };
+    const change = () => { if (reduced()) stop(); else start(); };
     let script = document.querySelector<HTMLScriptElement>('script[data-shanara-scroller]');
     if (!script) { script = document.createElement("script"); script.src = "/site-modules/shared/vendor-lenis.js?v=07020831fc52"; script.async = true; script.dataset.shanaraScroller = "true"; document.head.append(script); }
     script.addEventListener("load", start); preference.addEventListener("change", change); start();
