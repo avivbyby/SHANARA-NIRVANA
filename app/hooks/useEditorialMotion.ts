@@ -11,7 +11,7 @@ export function useEditorialMotion(stage: RefObject<HTMLDivElement | null>, onCh
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const staticMode = new URLSearchParams(window.location.search).get("static") === "1";
     if (staticMode) document.documentElement.classList.add("static");
-    const reduced = () => preference.matches || staticMode;
+    const reduced = () => preference.matches || staticMode || Boolean(window.SiteAccessibility?.reducedMotion);
     const reveals = Array.from(root.querySelectorAll<HTMLElement>(".motionLine, .statementCopy > p, .statementPhoto, .manifestIntro > p, .visionSheet, .soundStoryHead > p, .worldTabs > button, .curationCopy, .steps article, .nirvanaPreviewContent > p, .moment figcaption, .albumLauncher, .connectionCard, .connectionFoot"));
     let photos = Array.from(root.querySelectorAll<HTMLElement>(".motionPhotoFrame"));
     const gallery = Array.from(root.querySelectorAll<HTMLElement>(".moment"));
@@ -94,10 +94,10 @@ export function useEditorialMotion(stage: RefObject<HTMLDivElement | null>, onCh
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
     const changed = () => { if (reduced()) clear(); schedule(); };
-    window.addEventListener("scroll", schedule, { passive: true }); window.addEventListener("resize", schedule); preference.addEventListener("change", changed);
+    window.addEventListener("scroll", schedule, { passive: true }); window.addEventListener("resize", schedule); preference.addEventListener("change", changed); window.addEventListener("siteaccessibilitychange", changed);
     const contentChanged = new MutationObserver(() => { photos = Array.from(root.querySelectorAll<HTMLElement>(".motionPhotoFrame")); schedule(); });
     contentChanged.observe(root, { childList: true, subtree: true });
     const resize = new ResizeObserver(schedule); resize.observe(root); update();
-    return () => { contentChanged.disconnect(); observer.disconnect(); resize.disconnect(); cancelAnimationFrame(frame); clear(); window.removeEventListener("scroll", schedule); window.removeEventListener("resize", schedule); preference.removeEventListener("change", changed); };
+    return () => { contentChanged.disconnect(); observer.disconnect(); resize.disconnect(); cancelAnimationFrame(frame); clear(); window.removeEventListener("scroll", schedule); window.removeEventListener("resize", schedule); preference.removeEventListener("change", changed); window.removeEventListener("siteaccessibilitychange", changed); };
   }, [stage, onChapter]);
 }

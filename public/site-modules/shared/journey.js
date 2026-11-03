@@ -16,6 +16,7 @@
       s.classList.toggle('on', k === i);
       s.classList.toggle('done', k < i);
       btns[k].setAttribute('aria-expanded', k === i);
+      const content = s.querySelector('.tlText'); if (content) content.hidden = k !== i;
     });
     tl.style.setProperty('--p', n > 1 ? i / (n - 1) : 1);
   };
@@ -40,7 +41,7 @@
   let ticking = false;
   const onScroll = () => {
     ticking = false;
-    if (Date.now() - userAt < 4000) return;
+    if (window.SiteAccessibility?.reducedMotion || document.activeElement?.closest('#journey') || Date.now() - userAt < 4000) return;
     const r = tl.getBoundingClientRect(), vh = window.innerHeight;
     if (r.bottom < 0 || r.top > vh) return;
     const p = (vh * 0.85 - r.top) / (vh * 0.55);

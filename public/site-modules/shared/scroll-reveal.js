@@ -3,8 +3,9 @@
   const root = document.documentElement;
   const params = new URLSearchParams(location.search);
   const isStatic = params.get('static') === '1';
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduce = window.SiteAccessibility?.reducedMotion ?? window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   window.NV = { isStatic, reduce };
+  window.addEventListener('siteaccessibilitychange', () => { window.NV.reduce = !!window.SiteAccessibility?.reducedMotion; if (window.NV.reduce) document.querySelectorAll('.reveal,.eaSplit,.eaHero').forEach(el => el.classList.add('in')); });
 
   // ?static=1 → no animations, fixed hero height (used for screenshots / print)
   if (isStatic) {
@@ -32,9 +33,10 @@
 
   // Subtle parallax for [data-parallax="0.15"]
   const px = [...document.querySelectorAll('[data-parallax]')];
-  if (px.length && !isStatic && !reduce) {
+  if (px.length && !isStatic) {
     let ticking = false;
     const update = () => {
+      if (window.NV.reduce) { ticking = false; return; }
       const vh = window.innerHeight;
       px.forEach(el => {
         const r = el.parentElement.getBoundingClientRect();

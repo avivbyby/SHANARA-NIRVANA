@@ -73,7 +73,7 @@ test("plans page offers company routes before production packages", async () => 
 test("standalone page modules exist and parse after extraction", async () => {
   const { readFile } = await import("node:fs/promises");
   const { Script } = await import("node:vm");
-  for (const pathname of ["/nirvana", "/nirvana/plans"]) {
+  for (const pathname of ["/nirvana", "/nirvana/plans", "/accessibility"]) {
     const html = await (await render(pathname)).text();
     const references = [...html.matchAll(/(?:src|href)="(\/site-modules\/[^"?]+)(?:\?v=[a-f0-9]+)?"/g)];
     assert.ok(references.length > 1, `Expected modular resources for ${pathname}`);
@@ -146,6 +146,7 @@ test("accessibility statement, text manifesto and accessibility resources are se
     const html = await (await render(route)).text();
     assert.match(html, /הצהרת נגישות/);
     assert.match(html, /accessibility\.css/);
+    assert.match(html, /accessibility-tools\.js\?v=[a-f0-9]{12}/);
     assert.match(html, /tabindex="-1"/i);
   }
   const home = await (await render()).text();

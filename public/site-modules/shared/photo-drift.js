@@ -1,9 +1,10 @@
 /* v5 — slow Ken Burns zoom for .photo.kb (scale follows scroll position) */
 (function () {
   const els = [...document.querySelectorAll('.photo.kb')];
-  if (!els.length || (window.NV && (NV.isStatic || NV.reduce))) return;
+  if (!els.length || window.NV?.isStatic) return;
   let ticking = false;
   const update = () => {
+    if (window.NV?.reduce) { ticking = false; return; }
     const vh = window.innerHeight;
     els.forEach(el => {
       const r = el.getBoundingClientRect();

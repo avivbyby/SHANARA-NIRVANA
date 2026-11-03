@@ -13,7 +13,7 @@ async function walk(directory) {
 }
 await walk(path.join(root, "public/site-modules"));
 await walk(path.join(root, "public/fonts"));
-for (const relative of ["netlify/index.html", "app/accessibility/document.html", "app/nirvana/document.html", "app/nirvana/plans/document.html", "app/hooks/useSmoothScrolling.ts"]) {
+for (const relative of ["netlify/index.html", "app/layout.tsx", "app/accessibility/document.html", "app/nirvana/document.html", "app/nirvana/plans/document.html", "app/hooks/useSmoothScrolling.ts"]) {
   const file = path.join(root, relative); const source = await readFile(file, "utf8");
   const next = source.replace(/\/(?:site-modules|fonts)\/[^"'\s<>?]+\.(?:js|css)(?:\?v=[a-f0-9]+)?/g, value => {
     const asset = value.split("?")[0]; return hashes.has(asset) ? `${asset}?v=${hashes.get(asset)}` : value;

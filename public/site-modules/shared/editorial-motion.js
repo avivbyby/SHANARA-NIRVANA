@@ -50,20 +50,24 @@
   const menuBtn = nav && nav.querySelector('.menuBtn');
 
 
-  if (still) return;
+  window.addEventListener('siteaccessibilitychange', () => root.classList.toggle('ea-still', !!window.SiteAccessibility?.reducedMotion));
 
   /* ---- 5. smooth scroll (Exo Ape runs a virtual scroller) ---- */
-  let lenis = null;
-  if (window.Lenis) {
-    lenis = new window.Lenis({ lerp: 0.09, smoothWheel: true, anchors: true, prevent: n => !!(n.closest && n.closest('.mm, .lb2, .cg, .nav.open')) });
+  let lenis = null, lenisFrame = 0;
+  const stopSmooth = () => { cancelAnimationFrame(lenisFrame); lenis?.destroy(); lenis = null; window.eaLenis = null; };
+  const startSmooth = () => {
+    if (lenis || !window.Lenis || window.SiteAccessibility?.reducedMotion || window.NV?.isStatic) return;
+    lenis = new window.Lenis({ lerp: 0.09, smoothWheel: true, anchors: true, prevent: n => !!(n.closest && n.closest('.mm, .lb2, .cg, .nav.open, .a11y-panel')) });
     const raf = t => {
+      if (!lenis) return;
       const locked = document.body.style.overflow === 'hidden' || (nav && nav.classList.contains('open'));
       if (locked && !lenis.isStopped) lenis.stop(); else if (!locked && lenis.isStopped) lenis.start();
-      lenis.raf(t); requestAnimationFrame(raf);
+      lenis.raf(t); lenisFrame = requestAnimationFrame(raf);
     };
-    requestAnimationFrame(raf);
-    window.eaLenis = lenis;
-  }
+    lenisFrame = requestAnimationFrame(raf); window.eaLenis = lenis;
+  };
+  window.addEventListener('siteaccessibilitychange', () => { if (window.SiteAccessibility?.reducedMotion) stopSmooth(); else startSmooth(); });
+  startSmooth();
 
   /* ---- 6. scroll-driven: hero image drift, in-frame parallax, exploded gallery ---- */
   const heroImg = document.querySelector('.eaHeroBg img');
@@ -71,6 +75,7 @@
   let ticking = false;
   const update = () => {
     ticking = false;
+    if (window.SiteAccessibility?.reducedMotion) return;
     const vh = window.innerHeight, y = window.scrollY;
     if (heroImg && y < vh * 1.2) {
       heroImg.style.setProperty('--hy', (y * 0.35).toFixed(1) + 'px');

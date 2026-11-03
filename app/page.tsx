@@ -13,8 +13,8 @@ import ConnectionLinks from "./components/shanara/ConnectionLinks";
 import Footer from "./components/shanara/Footer";
 
 export default function Home() {
-  return <main dir="rtl" className="shanaraPage">
-    <a className="skipLink" href="#vision">דילוג לתוכן</a>
+  return <main id="main-content" tabIndex={-1} dir="rtl" className="shanaraPage">
+    <a className="skipLink" href="#main-content">דילוג לתוכן</a>
     <ShanaraNavigation />
     <MotionStage>
       <Hero /><Vision /><SoundStory /><Experience />
